@@ -1,0 +1,148 @@
+.chapter {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 375px;
+  height: 667px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Центрируем контент */
+  padding: 50px;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+  overflow: hidden;
+  border: 4px solid rgb(255, 255, 255);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  position: absolute;
+  top: 90px; /* Поднял заголовок */
+  font-size: 22px;
+}
+
+  .character {
+    cursor: pointer;
+    width: 128px;
+    height: 128px;
+    transition: transform 0.1s;
+  }
+  
+  .character:active {
+    transform: scale(0.9);
+  }
+  
+  .boss {
+    animation: shake 0.5s infinite alternate;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(-2px); }
+    100% { transform: translateX(2px); }
+  }
+  
+  .leaveButton {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  
+    &:hover {
+      background: #d43f3f;
+    }
+  }
+
+  .healthBarContainer {
+    width: 200px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3); /* Светлый фон */
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid white;
+    position: relative;
+  }
+  
+  .healthFill {
+    height: 100%;
+    background: linear-gradient(to right, red, darkred); /* Градиент от светло-красного к тёмно-красному */
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .healthBar {
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .healthText {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5px;
+    color: white;
+    font-weight: bold;
+  }
+  .healthBarWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 170px; /* Чтобы не сдвигалось */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .healthBar {
+    width: 200px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid white;
+    position: relative;
+  }
+  
+  .healthFill {
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .healthText {
+    margin-top: 5px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .username {
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    width: 104px;  
+    height: 28px;  
+    font-size: 12px;  
+    color: white;  
+    background: url('../assets/username-enter-bg.png') no-repeat center center / cover;  
+    border-radius: 10px;
+    text-align: center;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    animation: fade-in 1s ease-in-out;
+    overflow: hidden; /* На всякий случай */
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+  }
+  
+  

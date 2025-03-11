@@ -1,0 +1,428 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  width: 296.93px;
+  height: 500px;
+  background: url("../Assets/battlepass-bg.png") no-repeat center;
+  background-size: cover;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Заголовок Chronopass */
+.chronopassTitle {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #0044ff; /* Чистый синий цвет */
+  text-shadow: 0 0 10px rgba(0, 68, 255, 0.8), 0 0 20px rgba(0, 68, 255, 0.6);
+  animation: pulseGlow 0.5s infinite alternate ease-in-out;
+}
+
+/* Анимация пульсации */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 68, 255, 0.8), 0 0 10px rgba(0, 68, 255, 0.6);
+    transform: scale(1);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(0, 68, 255, 1), 0 0 40px rgba(0, 68, 255, 0.8);
+    transform: scale(1.1);
+  }
+}
+.battlepassContainer {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.battlepassScroll {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* Заголовки столбцов */
+.columnHeaders {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 равных колонки */
+  text-align: center;
+  width: 50%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.columnHeader {
+  width: 100px; /* Фиксированная ширина */
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #ffcc00, #ffb300, #ffdd44);
+  color: white;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33%;
+}
+/* 🎯 Исправляем расположение Free и Paid */
+.columnHeader.free {
+  margin-right: auto;
+}
+
+.columnHeader.paid {
+  margin-left: auto;
+}
+
+@keyframes zoomBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.battlepassGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.battlepassRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url("../Assets/bp-tasks-bg.png") center/cover no-repeat;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  
+  /* 🎬 Анимация появления */
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+  animation: zoomBounce 0.4s ease-out forwards;
+}
+
+/* 🎯 Ступенчатая задержка появления */
+.battlepassRow:nth-child(1) { animation-delay: 0.1s; }
+.battlepassRow:nth-child(2) { animation-delay: 0.2s; }
+.battlepassRow:nth-child(3) { animation-delay: 0.3s; }
+.battlepassRow:nth-child(4) { animation-delay: 0.4s; } 
+.battlepassRow:nth-child(5) { animation-delay: 0.5s; }
+
+/* 🎭 Анимация исчезновения при скрытии */
+.hidden {
+  animation: fadeOutDown 0.3s ease-out forwards;
+}
+
+.rewardFree,
+.rewardPaid,
+.levelLine {
+  width: 80px;
+  height: 30px; /* Одинаковая высота для всех элементов */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.rewardFree {
+  background: #28a745;
+  color: white;
+}
+
+.rewardPaid {
+  background: #007bff;
+  color: white;
+}
+
+.levelLine {
+  font-weight: bold;
+}
+
+/* Кнопка прилипает к низу */
+.buyButton {
+  width: 100%;
+  padding: 5px;
+  background: #2a00ff;
+  color: white;
+  font-size: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: sticky;
+  bottom: 10px;
+  z-index: 10;
+}
+/* 🔘 Стили для кнопки закрытия */
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 45px;
+  height: 45px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.closeButton img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* 🖱 Эффект наведения */
+.closeButton:hover img {
+  transform: scale(1.1);
+}
+
+/* 🖱 Эффект нажатия */
+.closeButton:active img {
+  transform: scale(0.9);
+}
+
+/* 🔘 Стили для нижних кнопок */
+.bottomButtons {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.tabButton {
+  width: 45%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.active {
+  background: #2a00ff;
+  color: white;
+  box-shadow: 0 0 10px rgba(42, 0, 255, 0.8);
+}
+
+.inactive {
+  background: #777;
+  color: #ccc;
+}
+
+/* 🔥 Стили для кнопок недель */
+.weekSelector {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0;
+}
+
+.weekButton {
+  width: 25%;
+  padding: 4px 6px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.weekButton.active {
+  background: #ffcc00;
+  color: black;
+}
+
+.weekButton.inactive {
+  background: #444;
+  color: #bbb;
+}
+
+/* 🔥 Стили для списка квестов */
+.questsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🎯 Блок задания в ОДНУ строку */
+.questItem {
+  width: 90%;
+  padding: 10px;
+  background: #f5f5dc;
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 🔥 Распределяем элементы в строку */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 📜 Текст задания (слева) */
+.questText {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  flex: 2; /* Даем больше места тексту */
+}
+
+/* 🎖 Награда XP (по центру) */
+.questReward {
+  font-size: 14px;
+  color: #2a00ff;
+  font-weight: bold;
+  flex: 1; /* Выравниваем в центре */
+  text-align: center;
+}
+
+/* ✅ Кнопка "Claim" или Прогресс (справа) */
+.claimButton,
+.progressText {
+  font-size: 14px;
+  font-weight: bold;
+  flex: 1; /* Выравниваем справа */
+  text-align: right;
+}
+
+/* 🌟 Кнопка "Claim" */
+.claimButton {
+  background: #2a00ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 50px; /* 📌 Фиксируем ширину */
+  height: 30px; /* 📌 Фиксируем высоту */
+  display: flex;
+  justify-content: center; /* 📌 Центрируем текст (по горизонтали) */
+  align-items: center; /* 📌 Центрируем текст (по вертикали) */
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+/* 🎯 Наведение */
+.claimButton:hover {
+  background: #1a0080;
+}
+
+
+/* 📊 Текст прогресса */
+.progressText {
+  color: #666;
+}
+
+/* 🎬 Анимация появления сдвигом */
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 📌 Стили для блока заданий */
+.questItem {
+  background: #f4e1c1;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  opacity: 0; /* 🔹 По умолчанию скрыты */
+  transform: translateX(-50px); /* 🔹 Начинаем вне экрана */
+  animation: fadeInSlide 0.5s ease-out forwards;
+}
+
+/* 🎯 Добавляем задержку для ступенчатого появления */
+.questItem:nth-child(1) { animation-delay: 0.1s; }
+.questItem:nth-child(2) { animation-delay: 0.2s; }
+.questItem:nth-child(3) { animation-delay: 0.3s; }
+.questItem:nth-child(4) { animation-delay: 0.4s; } 
+.questItem:nth-child(5) { animation-delay: 0.5s; }
+
+/* 🔹 Стили для скроллбара */
+.battlepassContainer::-webkit-scrollbar {
+  width: 3px; /* Толщина полосы прокрутки */
+}
+
+.battlepassContainer::-webkit-scrollbar-thumb {
+  background: url("../Assets/down.png") center/cover no-repeat;
+  border-radius: 6px;
+  max-height: 5px; /* Минимальный размер ползунка */
+}
+
+.battlepassContainer::-webkit-scrollbar-thumb:hover {
+  background: url("../Assets/down.png") center/cover no-repeat;
+  filter: brightness(1.2);
+}
+
+/* 🔹 Стрелки вверх/вниз */
+.battlepassContainer::-webkit-scrollbar-button:single-button:decrement {
+  background: url("../Assets/up.png") center/contain no-repeat;
+  height: 5px;
+}
+
+.battlepassContainer::-webkit-scrollbar-button:single-button:increment {
+  background: url("../Assets/down.png") center/contain no-repeat;
+  height: 5px;
+}
+

@@ -1,0 +1,51 @@
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 285px;
+    height: 192px;
+    background: url('../assets/username-enter-bg.png') no-repeat center center / cover;  /* Устанавливаем фон поп-апа */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .inputContainer {
+    width: 172px;
+    height: 38px;
+    background: url('../assets/enter-name-bg.png') no-repeat center center / cover;  /* Устанавливаем фон для ввода никнейма */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    outline: none;
+  }
+  
+  .saveButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .saveButton:hover {
+    background-color: #0056b3;
+  }
+  

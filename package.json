@@ -1,0 +1,31 @@
+{
+  "name": "chronofall-miniapp",
+  "homepage": "https://babywetwipes.github.io/my-game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "predeploy": "vite build",
+  "deploy": "gh-pages -d dist"
+},
+  "type": "module",
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.4.7",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.3.1",
+    "three": "^0.174.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.4.0",
+    "sass": "^1.85.1",
+    "tailwindcss": "^3.4.0",
+    "vite": "^4.0.0"
+  }
+}

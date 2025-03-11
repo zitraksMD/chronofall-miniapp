@@ -1,0 +1,382 @@
+.characterScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+}
+
+/* Блок анимации персонажа */
+.character {
+  width: 150px;
+  position: absolute;
+  top: 20%;
+  left: 7%;
+}
+
+.characterLarge {
+  width: 200px;
+  top: 30%;
+}
+
+.weaponBlock,
+.helmBlock,
+.armorBlock,
+.bootsBlock,
+.ringBlock,
+.necklaceBlock {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.weaponBlock img,
+.helmBlock img,
+.armorBlock img,
+.bootsBlock img,
+.ringBlock img,
+.necklaceBlock img {
+  width: 30px;
+}
+
+.weaponBlock p,
+.helmBlock p,
+.armorBlock p,
+.bootsBlock p,
+.ringBlock p,
+.necklaceBlock p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: white;
+}
+
+/* Расположение вокруг персонажа */
+.weaponBlock {
+  top: 25%;
+  left: 8%;
+}
+
+.helmBlock {
+  top: 25%;
+  left: 85%;
+  transform: translateX(-50%);
+}
+
+.armorBlock {
+  top: 43%;
+  left: 77%;
+}
+
+.bootsBlock {
+  top: 60%;
+  left: 85%;
+  transform: translateX(-50%);
+}
+
+.ringBlock {
+  top: 60%;
+  left: 8%;
+}
+
+.necklaceBlock {
+  top: 43%;
+  left: 16%;
+  transform: translateX(-50%);
+}
+
+/* Блок с бонусами от скина */
+.skinBonuses {
+  position: absolute;
+  top: 20%;
+  right: 4%;
+  width: 131px;
+  height: 160px;
+  background: url("../assets/skin-stat-bonuses-bg.png") no-repeat center,
+    rgba(0, 0, 0, 0.7);
+  background-size: cover;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Блок информации (фон скрывается при Equipment) */
+.infoBlock {
+  position: absolute;
+  top: 50%;
+  width: 80%;
+  background: url("../assets/character-stats-bg.png") no-repeat center;
+  background-size: cover;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.equipment-slot.active {
+  border: 2px solid #FFD700; /* Золотая рамка */
+  box-shadow: 0px 0px 10px #FFD700; /* Эффект свечения */
+  background: rgba(255, 223, 0, 0.2); /* Легкая подсветка */
+}
+
+.equipmentList {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: white; // Сделает текст белым!
+}
+
+.equipmentIcons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.equipmentIcons img {
+  width: 50px; // Размер иконок
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.equipmentIcons img:hover {
+  transform: scale(1.1);
+}
+
+
+.equipmentIcons img {
+  width: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.equipmentIcons img:hover {
+  transform: scale(1.1);
+}
+
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+/* Блок вкладок (вынесен отдельно, чтобы не скрывался) */
+.tabsContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+  background: url("../assets/bp-tasks-bg.png") no-repeat center;
+  background-size: cover;
+  padding: 10px;
+  border-radius: 10px;
+  transition: bottom 0.3s ease; /* Плавное изменение */
+}
+.tabs button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  width: 100px; /* Делаем одинаковую ширину */
+  text-align: center;
+}
+
+
+.tabsContainer.equipmentMode {
+  bottom: 15%; /* Если вкладка Equipment — опускаем вниз */
+}
+
+.tabsContainer.defaultMode {
+  bottom: 285px; /* Обычное положение */
+}
+
+
+.tabs button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  width: 100px; /* Делаем одинаковую ширину */
+  text-align: center;
+}
+
+
+.tabs .activeTab {
+  font-weight: bold;
+  background: rgb(86, 85, 95);
+  border-radius: 5px;
+}
+
+
+/* Контейнер с фиксированной высотой */
+.content {
+  margin-top: 10px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.fixedHeight {
+  min-height: 120px;
+}
+
+/* Статы */
+.statsBlock .stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+/* Кнопки */
+button {
+  background: #1100ff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #1500ff;
+}
+
+/* Блок скинов */
+.skins {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.skins img {
+  width: 80px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.skins img:hover {
+  transform: scale(1.1);
+}
+
+/* Вкладки всегда на месте */
+.activeTab {
+  font-weight: bold;
+  background: #4000ff;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(64, 0, 255, 0.8); /* Добавляем свечение */
+}
+
+.inactiveTab {
+  background: #888; /* Серый цвет */
+  color: white;
+  opacity: 0.6; /* Немного прозрачности */
+}
+
+.character {
+  width: 150px;
+  position: absolute;
+  top: 20%;
+  left: 7%;
+  transition: all 0.3s ease-in-out;
+}
+
+.characterCentered {
+  left: 22%;
+  transform: translateX(-50%);
+  width: 200px; /* Увеличиваем персонажа */
+  top: 25%; /* Чуть ниже */
+}
+
+.previewWindow {
+  position: fixed; /* Чтобы окно оставалось поверх всего */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  width: 250px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 2000; /* Поднимаем окно выше остальных элементов */
+}
+
+.previewWindow h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.previewWindow img {
+  width: 80px;
+  height: auto;
+}
+
+.previewWindow p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.previewWindow button {
+  background: #ffd700;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+.previewWindow button:hover {
+  background: #ffc107;
+}
+
+.closeButton {
+  background: red !important;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 16px;
+}
+

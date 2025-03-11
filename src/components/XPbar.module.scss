@@ -1,0 +1,80 @@
+.xpBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px; /* Расстояние между уровнями и полоской */
+}
+
+.xpProgressContainer {
+  flex: 1;
+  height: 12px; /* Увеличиваем высоту */
+  background: #222;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+}
+
+.levelText {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3c00ff;
+  width: 40px;
+  text-align: center;
+}
+
+.xpProgressBar {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 140, 0, 0.7), rgba(255, 215, 0, 1));
+  transition: width 1s ease-in-out;
+}
+  
+  /* Искры на конце полосы */
+  .xpProgressBar::after {
+    content: "";
+    position: absolute;
+    right: -5px; /* Смещаем в конец полосы */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, rgba(255, 255, 0, 1) 0%, rgba(255, 140, 0, 0.6) 50%, rgba(255, 140, 0, 0) 100%);
+    border-radius: 50%;
+    animation: sparkEffect 0.3s infinite alternate ease-in-out;
+  }
+  
+  /* 🔥 Эффект плавления */
+  @keyframes meltEffect {
+    0% {
+      background-position: 0% 50%;
+      filter: blur(1px);
+    }
+    100% {
+      background-position: 100% 50%;
+      filter: blur(3px);
+    }
+  }
+  
+  /* ✨ Свечение всей полосы */
+  @keyframes shineEffect {
+    0% {
+      box-shadow: 0 0 5px rgba(255, 140, 0, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 15px rgba(255, 215, 0, 1);
+    }
+  }
+  
+  /* ⚡ Искры на конце полосы */
+  @keyframes sparkEffect {
+    0% {
+      transform: translateY(-50%) scale(1);
+      opacity: 1;
+      box-shadow: 0 0 5px rgba(255, 255, 100, 0.8);
+    }
+    100% {
+      transform: translateY(-50%) scale(1.5);
+      opacity: 0.3;
+      box-shadow: 0 0 10px rgba(255, 255, 200, 1);
+    }
+  }

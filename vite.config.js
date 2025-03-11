@@ -1,18 +1,18 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: './', // 🔑 Это пусть останется
+  base: "/chronofall-miniapp/",
   plugins: [react()],
-  publicDir: 'public',
+  publicDir: "public",
   server: {
     watch: {
-      usePolling: true
-    }
+      usePolling: true,
+    },
   },
   resolve: {
     alias: {
-      '@': '/src'
-    }
-  }
+      "@": "/src",
+    },
+  },
 });

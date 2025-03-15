@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./Popup.module.scss";
-import scrollImage from "../assets/свиток.png";
+import scrollImage from "../Assets/свиток.png";
 
 export const Popup = ({ isOpen, loot, nextChapter, restartChapter, isWin }) => {
   const [selectedItem, setSelectedItem] = useState(null);

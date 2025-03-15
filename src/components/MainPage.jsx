@@ -12,10 +12,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import GoldDisplay from "./GoldDisplay";
 import GameScreen from "./GameScreen"; 
 
-import shopIcon from "./assets/icon-shop.png";
-import playIcon from "./assets/icon-play.png";
-import inventoryIcon from "./assets/icon-inventory.png";
-import characterIcon from "./assets/character-icon.png"; 
+import shopIcon from "../assets/icon-shop.png";
+import playIcon from "../assets/icon-play.png";
+import inventoryIcon from "../assets/icon-inventory.png";
+import characterIcon from "../assets/character-icon.png"; 
 
 const MainPage = () => {
   const { username, saveUsername } = useUser();

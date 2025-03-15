@@ -1,8 +1,25 @@
 import { motion } from "framer-motion";
 import styles from "./Inventory.module.scss";
 import invBG from "../assets/battlepass-bg.png";
+import { useEffect, useState } from "react";
 
-export default function Inventory({ loot = [], onClose }) {
+
+const Inventory = ({ onClose }) => {
+  const [inventory, setInventory] = useState(() => {
+    const savedInventory = localStorage.getItem("inventory");
+    return savedInventory ? JSON.parse(savedInventory) : [];
+  });
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedInventory = JSON.parse(localStorage.getItem("inventory")) || [];
+      setInventory(savedInventory);
+    };
+  
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);  
+
   return (
     <>
       <motion.div
@@ -19,31 +36,24 @@ export default function Inventory({ loot = [], onClose }) {
       >
         <h1>Инвентарь</h1>
         <div className={styles.lootContainer}>
-          {loot.length > 0 ? (
-            loot.map((item, index) => (
-              <motion.div
-                key={index}
-                className={`${styles.item} ${item.color}`}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                <img src={item.image} alt={item.name} />
-                <span>{item.name}</span>
-              </motion.div>
-            ))
-          ) : (
-            <p>Инвентарь пуст...</p>
-          )}
-        </div>
-
-        <motion.button
-          className={styles["close-button"]}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={onClose}
-        >
-          Закрыть инвентарь
-        </motion.button>
+   {inventory.length > 0 ? (
+    inventory.map((item, index) => (
+      <motion.div key={index} className={styles.item} whileHover={{ scale: 1.1 }}>
+        <img src={item.image} alt={item.name} className={styles.itemImage} />
+        {item.count > 1 && ( // Показываем счетчик, только если предметов больше 1
+          <div className={styles.itemCount}>
+            x{item.count}
+          </div>
+        )}
+      </motion.div>
+    ))
+  ) : (
+    <p>Инвентарь пуст...</p>
+  )}  
+</div>
       </motion.div>
     </>
   );
-}
+};
+
+export default Inventory;

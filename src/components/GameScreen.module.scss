@@ -1,0 +1,158 @@
+.gameContainer {
+  position: fixed;
+  top: 48%;
+  left: 50%;
+  width: 375px; /* 🔥 Полная ширина экрана */
+  height: 667px; /* 🔥 Полная высота экрана */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+  .closeButton {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    z-index: 10;
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+/* 🔥 Анимация появления экрана Challenge */
+.motionContainer {
+  width: 100vw; /* Полная ширина */
+  height: 100vh; /* Полная высота */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+  /* 🔥 Затемнение экрана */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Затемнение */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 20;
+}
+
+/* 🔥 Большие надписи WAVE X */
+.waveText {
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* 🔥 Анимация пульсации для цифр */
+.countdownText {
+  font-size: 80px;
+  font-weight: bold;
+  animation: pulse 1s infinite alternate ease-in-out;
+}
+
+/* 🔥 Поп-ап при завершении Challenge */
+.popupOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 300px;
+}
+
+.popup h2 {
+  font-size: 24px;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.popupButton {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+}
+
+.popupButton:first-of-type {
+  background: red;
+  color: white;
+}
+
+.popupButton:last-of-type {
+  background: green;
+  color: white;
+}
+
+/* 🔥 Ключевые кадры для анимаций */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+.loadingScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9); // Затемнённый фон
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.loadingText {
+  font-size: 24px;
+  color: white;
+  animation: fadeIn 1s infinite alternate;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}

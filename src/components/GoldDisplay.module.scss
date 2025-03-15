@@ -1,0 +1,39 @@
+.goldContainer {
+    position: absolute;
+    top: 6px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px; // Размер контейнера, можно подстроить
+    height: 40px;
+  }
+  
+  .bgImage {
+    position: absolute;
+    width: 125px;
+    height: 30px;
+    object-fit: contain;
+    z-index: 1;
+  }
+  
+  .goldContent {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2; // Поверх фона
+    padding: 5px 10px;
+  }
+  
+  .coinIcon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+  }
+  
+  .goldText {
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000; // Цвет золота
+  }
+  

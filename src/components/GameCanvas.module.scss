@@ -1,0 +1,21 @@
+.gameCanvas {
+    position: absolute;
+    z-index: 1001; /* Чтобы холст был выше фона */
+    background: transparent !important; /* Делаем холст прозрачным */
+  }
+  
+  .player {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red; /* Можно сменить на другой цвет */
+    border-radius: 50%;
+    z-index: 1001; /* Поднимаем выше фона */
+  }
+  .bullet {
+    position: absolute;
+    z-index: 1002;
+    transition: top 0.1s linear; /* Гладкое движение */
+  }
+  
+  

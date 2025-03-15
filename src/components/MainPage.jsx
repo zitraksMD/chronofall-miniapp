@@ -4,16 +4,18 @@ import Inventory from "./Inventory";
 import Shop from "./Shop";
 import BattlepassPopup from "./Battlepass";
 import UsernamePopup from "./UsernamePopup";
-import CharacterScreen from "./CharacterScreen"; // Новый экран
+import CharacterScreen from "./CharacterScreen"; 
 import styles from "./MainPage.module.scss";
-import mainBg from "../assets/main-screen-bg.png";
+import mainBg from "/src/assets/main-screen-bg.png";;
 import { useUser } from "./Username";
 import { motion, AnimatePresence } from "framer-motion";
+import GoldDisplay from "./GoldDisplay";
+import GameScreen from "./GameScreen"; 
 
 import shopIcon from "../assets/icon-shop.png";
 import playIcon from "../assets/icon-play.png";
 import inventoryIcon from "../assets/icon-inventory.png";
-import characterIcon from "../assets/character-icon.png"; // Иконка персонажа
+import characterIcon from "../assets/character-icon.png"; 
 
 const MainPage = () => {
   const { username, saveUsername } = useUser();
@@ -43,11 +45,25 @@ const MainPage = () => {
     <div className={styles.container} style={{ backgroundImage: `url(${mainBg})`, width: "375px", height: "667px" }}>
       {isPopupVisible && <UsernamePopup onSave={handleSaveUsername} />}
       {username && <div className={styles.username}>{username}</div>}
+      <GoldDisplay /> 
       <button className={styles.chronopassButton} onClick={() => setActiveTab("battlepass")}>
         Chronopass
       </button>
 
       <AnimatePresence>
+        {activeTab === "challenge" && (
+          <motion.div
+            key="challenge"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            style={{ width: "100%", height: "100%" }}
+          >
+            <GameScreen onClose={() => setActiveTab("menu")} />
+          </motion.div>
+        )}
+
         {activeTab === "shop" && (
           <motion.div
             key="shop"
@@ -101,6 +117,9 @@ const MainPage = () => {
           >
             <button className={styles.playButton} onClick={() => setActiveTab("play")}>
               Play
+            </button>
+            <button className={styles.challengeButton} onClick={() => setActiveTab("challenge")}>
+              Challenge
             </button>
           </motion.div>
         )}

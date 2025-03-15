@@ -20,6 +20,13 @@
   color: white;
   text-align: center;
 }
+.playerHealthWrapper {
+  position: absolute;
+  top: 50px; /* Поднимаем немного от края */
+  left: 43%;
+  transform: translateX(-50%);
+  width: 80%;
+}
 
 h1 {
   position: absolute;
@@ -27,19 +34,30 @@ h1 {
   font-size: 22px;
 }
 
-  .character {
-    cursor: pointer;
-    width: 128px;
-    height: 128px;
-    transition: transform 0.1s;
-  }
+.character {
+  cursor: pointer;
+  width: 228px;
+  height: 228px;
+  transition: transform 1.2s;
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.boss {
+  top: 230px; /* Поднимаем чуть выше */
+  left: 20%;
+  transform: translateX(-50%) scale(1.2); /* Центрируем и увеличиваем */
+}
+
   
   .character:active {
-    transform: scale(0.9);
+    transform: scale(1.0);
   }
   
   .boss {
-    animation: shake 0.5s infinite alternate;
+    animation: shake 0.1s infinite alternate;
   }
   
   @keyframes shake {
@@ -66,7 +84,7 @@ h1 {
   }
 
   .healthBarContainer {
-    width: 200px;
+    width: 20px;
     height: 20px;
     background: rgba(255, 255, 255, 0.3); /* Светлый фон */
     border-radius: 10px;
@@ -98,7 +116,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     position: absolute;
-    top: 170px; /* Чтобы не сдвигалось */
+    bottom: 75px; /* Чтобы не сдвигалось */
     left: 50%;
     transform: translateX(-50%);
   }
@@ -143,6 +161,49 @@ h1 {
     overflow: hidden; /* На всякий случай */
     text-transform: uppercase; 
     letter-spacing: 1px;
+  }
+  .bossFightScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  
+  .bossFightText {
+    top: 40%;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+  }
+  
+  .goldContainer {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 215, 0, 0.9);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .goldIcon {
+    width: 40px;
+    height: 40px;
   }
   
   

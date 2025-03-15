@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Popup } from "./Popup";
 import styles from "./Chapter.module.scss";
-import mainBg from "../assets/main-screen-bg.png";
+import mainBg from "../Assets/main-screen-bg.png";
 import Inventory from "./Inventory";
 import { useUser } from "./Username";
 import lootTable from "./lootTable";
 import monsterTable from "./monsterTable";
 import { useGold } from "./GoldContext";
-import coinIcon from "../assets/coin-icon.png"; // Убедись, что путь правильный
+import coinIcon from "../Assets/coin-icon.png"; // Убедись, что путь правильный
 import GoldDisplay from "./GoldDisplay";
 
 

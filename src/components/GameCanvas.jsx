@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
-import { useGameStore } from "../store/gameStore"; 
-import { useBulletsStore } from "../store/bulletsStore";
-import { useEnemiesStore } from "../store/enemiesStore";
+import { useGameStore } from "../Store/gameStore"; 
+import { useBulletsStore } from "../Store/bulletsStore";
+import { useEnemiesStore } from "../Store/enemiesStore";
 import arrowImageSrc from "../Assets/arrow-icon.png";
 import playerImageSrc from "../Assets/archer-icon.png";
 import enemyImageSrc from "../Assets/enemy-icon.png";

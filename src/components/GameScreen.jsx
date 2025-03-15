@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion"; // ✅ Добавляем анимацию
 import GameCanvas from "./GameCanvas";
 import Joystick from "./Joystick";
-import { useEnemiesStore } from "../store/enemiesStore";
+import { useEnemiesStore } from "../Store/enemiesStore";
 import styles from "./GameScreen.module.scss";
 import backgroundImage from "/src/Assets/challenge-background.png";
 

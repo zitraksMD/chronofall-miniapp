@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./CharacterScreen.module.scss";
-import characterImage from "../assets/character-image.png";
-import skin1 from "../assets/skin1.png";
-import skin2 from "../assets/skin2.png";
-import swordIcon from "../assets/sword-icon.png";
-import armorIcon from "../assets/armor-icon.png";
-import helmIcon from "../assets/helm-icon.png";
-import ringIcon from "../assets/ring-icon.png";
-import necklaceIcon from "../assets/necklace-icon.png";
-import bootsIcon from "../assets/boots-icon.png";
-import sword1 from "../assets/sword1.png";
-import sword2 from "../assets/sword2.png";
-import sword3 from "../assets/sword3.png";
+import characterImage from "../Assets/character-image.png";
+import skin1 from "../Assets/skin1.png";
+import skin2 from "../Assets/skin2.png";
+import swordIcon from "../Assets/sword-icon.png";
+import armorIcon from "../Assets/armor-icon.png";
+import helmIcon from "../Assets/helm-icon.png";
+import ringIcon from "../Assets/ring-icon.png";
+import necklaceIcon from "../Assets/necklace-icon.png";
+import bootsIcon from "../Assets/boots-icon.png";
+import sword1 from "../Assets/sword1.png";
+import sword2 from "../Assets/sword2.png";
+import sword3 from "../Assets/sword3.png";
 
 const equipmentData = {
   weapon: [
@@ -63,6 +63,16 @@ const CharacterScreen = ({ onClose }) => {
     setIsEquipmentListOpen(isEquipmentListOpen === type ? null : type);
   };
 
+  const upgradeItem = () => {
+    if (previewItem) {
+      setPreviewItem((prev) => ({
+        ...prev,
+        attack: Math.round(prev.attack * 1.05),
+        speed: Math.round(prev.speed * 1.05),
+      }));
+    }
+  };
+
   return (
     <div className={styles.characterScreen}>
       <motion.img
@@ -72,7 +82,17 @@ const CharacterScreen = ({ onClose }) => {
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
       />
-
+      <div className={`${styles.tabsContainer} ${activeTab === "equipment" ? styles.equipmentMode : styles.defaultMode}`}>
+        <button className={activeTab === "stats" ? styles.activeTab : styles.inactiveTab} onClick={() => setActiveTab("stats")}>
+          Stats
+        </button>
+        <button className={activeTab === "skins" ? styles.activeTab : styles.inactiveTab} onClick={() => setActiveTab("skins")}>
+          Skins
+        </button>
+        <button className={activeTab === "equipment" ? styles.activeTab : styles.inactiveTab} onClick={() => setActiveTab("equipment")}>
+          Equipment
+        </button>
+      </div>
       {activeTab === "equipment" && (
         <>
           <div className={styles.weaponBlock} onClick={() => toggleEquipmentList("weapon")}>
@@ -95,42 +115,33 @@ const CharacterScreen = ({ onClose }) => {
           </div>
         </>
       )}
-{/* Контент вкладок (фон скрывается при Equipment) */}
-<div className={`${styles.infoBlock} ${activeTab === "equipment" ? styles.hidden : ""}`}>
-  <div className={`${styles.content} ${styles.fixedHeight}`}>
-    {activeTab === "stats" && (
-      <div className={styles.statsBlock}>
-        <p>Свободные очки: {freePoints}</p>
-        {Object.keys(stats).map((stat) => (
-          <div key={stat} className={styles.stat}>
-            <span>{stat.charAt(0).toUpperCase() + stat.slice(1)}: {stats[stat]}</span>
-            <button onClick={() => upgradeStat(stat)}>+</button>
-          </div>
-        ))}
-      </div>
-    )}
 
-    {activeTab === "skins" && (
-      <div className={styles.skinsBlock}>
-        <div className={styles.skins}>
-          <img src={skin1} alt="Skin 1" onClick={() => setSelectedSkin(skin1)} />
-          <img src={skin2} alt="Skin 2" onClick={() => setSelectedSkin(skin2)} />
+      {activeTab !== "equipment" && (
+        <div className={styles.infoBlock}>
+          <div className={`${styles.content} ${styles.fixedHeight}`}>
+            {activeTab === "stats" && (
+              <div className={styles.statsBlock}>
+                <p>Свободные очки: {freePoints}</p>
+                {Object.keys(stats).map((stat) => (
+                  <div key={stat} className={styles.stat}>
+                    <span>{stat.charAt(0).toUpperCase() + stat.slice(1)}: {stats[stat]}</span>
+                    <button onClick={() => upgradeStat(stat)}>+</button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === "skins" && (
+              <div className={styles.skinsBlock}>
+                <div className={styles.skins}>
+                  <img src={skin1} alt="Skin 1" onClick={() => setSelectedSkin(skin1)} />
+                  <img src={skin2} alt="Skin 2" onClick={() => setSelectedSkin(skin2)} />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    )}
-  </div>
-</div>
-      <div className={`${styles.tabsContainer} ${activeTab === "equipment" ? styles.equipmentMode : styles.defaultMode}`}>
-        <button className={activeTab === "stats" ? styles.activeTab : styles.inactiveTab} onClick={() => setActiveTab("stats")}>
-          Stats
-        </button>
-        <button className={activeTab === "skins" ? styles.activeTab : styles.inactiveTab} onClick={() => setActiveTab("skins")}>
-          Skins
-        </button>
-        <button className={activeTab === "equipment" ? styles.activeTab : styles.inactiveTab} onClick={() => setActiveTab("equipment")}>
-          Equipment
-        </button>
-      </div>
+      )}
 
       {isEquipmentListOpen && (
         <div className={styles.equipmentList}>
@@ -145,24 +156,25 @@ const CharacterScreen = ({ onClose }) => {
       )}
 
       {previewItem && (
-        <div className={styles.previewWindow}>
-          <h3>{previewItem.name}</h3>
-          <img src={previewItem.img} alt={previewItem.name} />
-          <p>⚔ Attack: {previewItem.attack}</p>
-          <p>⚡ Speed: {previewItem.speed}</p>
-          <button
-            onClick={() => {
-              setSelectedEquipment((prev) => ({ ...prev, weapon: previewItem.img }));
-              setPreviewItem(null);
-              setIsEquipmentListOpen(null);
-            }}
-          >
-            Equip
-          </button>
-          <button className={styles.closeButton} onClick={() => setPreviewItem(null)}>X</button>
-        </div>
-      )}
-
+         <div className={styles.previewWindow}>
+         <h3>{previewItem.name}</h3>
+         <img src={previewItem.img} alt={previewItem.name} />
+         <p>⚔ Attack: {previewItem.attack}</p>
+         <p>⚡ Speed: {previewItem.speed}</p>
+         <button onClick={upgradeItem}>Upgrade</button>
+         <button
+           onClick={() => {
+             setSelectedEquipment((prev) => ({ ...prev, weapon: previewItem.img }));
+             setPreviewItem(null);
+             setIsEquipmentListOpen(null);
+           }}
+         >
+           Equip
+         </button>
+         <button className={styles.closeButton} onClick={() => setPreviewItem(null)}>X</button>
+       </div>
+     )}
+     
       <div className={styles.selectedEquipmentInfo}>
         {Object.entries(selectedEquipment).map(([key, value]) =>
           value ? <p key={key}>{equipmentNames[value]}</p> : null

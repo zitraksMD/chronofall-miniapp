@@ -5,7 +5,7 @@
     transform: translate(-50%, -50%);
     width: 285px;
     height: 192px;
-    background: url('../assets/username-enter-bg.png') no-repeat center center / cover;  /* Устанавливаем фон поп-апа */
+    background: url('../Assets/username-enter-bg.png') no-repeat center center / cover;  /* Устанавливаем фон поп-апа */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +17,7 @@
   .inputContainer {
     width: 172px;
     height: 38px;
-    background: url('../assets/enter-name-bg.png') no-repeat center center / cover;  /* Устанавливаем фон для ввода никнейма */
+    background: url('../Assets/enter-name-bg.png') no-repeat center center / cover;  /* Устанавливаем фон для ввода никнейма */
     display: flex;
     justify-content: center;
     align-items: center;

@@ -11,7 +11,7 @@
     justify-content: center;
     padding: 50px;
     box-sizing: border-box;
-    background: url("../assets/background.jpg") no-repeat center center;
+    background: url("../Assets/background.jpg") no-repeat center center;
     background-size: cover;
     z-index: 10;
     overflow: hidden;
@@ -38,7 +38,7 @@
   font-size: 16px;
   font-weight: bold;
   color: white;
-  background: url("../assets/diamond_blue.png") no-repeat center center / cover;
+  background: url("../Assets/diamond_blue.png") no-repeat center center / cover;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -73,7 +73,7 @@
   height: 28px;  
   font-size: 14px;  
   color: white;  
-  background: url('../assets/username-enter-bg.png') no-repeat center center / cover;  
+  background: url('../Assets/username-enter-bg.png') no-repeat center center / cover;  
   border-radius: 10px;
   text-align: center;
   display: flex; 

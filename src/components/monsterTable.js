@@ -1,9 +1,9 @@
-import monster1 from "../assets/monster1.png";
-import monster2 from "../assets/monster2.png";
-import monster3 from "../assets/monster3.png";
-import monster4 from "../assets/monster4.png";
-import boss1 from "../assets/boss1.png";
-import finalBoss from "../assets/final-boss.png";
+import monster1 from "../Assets/monster1.png";
+import monster2 from "../Assets/monster2.png";
+import monster3 from "../Assets/monster3.png";
+import monster4 from "../Assets/monster4.png";
+import boss1 from "../Assets/boss1.png";
+import finalBoss from "../Assets/final-boss.png";
 
 const monsterTable = [
   { name: "Monster 1", image: monster1, hp: 90, damage:1},

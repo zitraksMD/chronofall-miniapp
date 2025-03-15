@@ -4,7 +4,7 @@ import GameCanvas from "./GameCanvas";
 import Joystick from "./Joystick";
 import { useEnemiesStore } from "../store/enemiesStore";
 import styles from "./GameScreen.module.scss";
-import backgroundImage from "/src/assets/challenge-background.png";
+import backgroundImage from "/src/Assets/challenge-background.png";
 
 const GameScreen = ({ onClose }) => {
   const [wave, setWave] = useState(1);

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import styles from "./Inventory.module.scss";
-import invBG from "../assets/battlepass-bg.png";
+import invBG from "../Assets/battlepass-bg.png";
 import { useEffect, useState } from "react";
 
 

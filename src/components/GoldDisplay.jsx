@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useGold } from "./GoldContext";
 import styles from "./GoldDisplay.module.scss"; // Создадим для стилей
-import coinIcon from "../assets/coin-icon.png"; // Иконка золота
-import bgImage from "../assets/block.png"; // Фон
+import coinIcon from "../Assets/coin-icon.png"; // Иконка золота
+import bgImage from "../Assets/block.png"; // Фон
 
 const GoldDisplay = () => {
   const { gold } = useGold();

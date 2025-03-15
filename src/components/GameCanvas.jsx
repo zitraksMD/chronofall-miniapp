@@ -3,9 +3,9 @@ import Matter from "matter-js";
 import { useGameStore } from "../store/gameStore"; 
 import { useBulletsStore } from "../store/bulletsStore";
 import { useEnemiesStore } from "../store/enemiesStore";
-import arrowImageSrc from "../assets/arrow-icon.png";
-import playerImageSrc from "../assets/archer-icon.png";
-import enemyImageSrc from "../assets/enemy-icon.png";
+import arrowImageSrc from "../Assets/arrow-icon.png";
+import playerImageSrc from "../Assets/archer-icon.png";
+import enemyImageSrc from "../Assets/enemy-icon.png";
 
 console.log("✅ GameCanvas загружен, создаём canvas!");
 

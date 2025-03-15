@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./UsernamePopup.module.scss";
-import bgImage from "../assets/username-enter-bg.png";
-import inputBgImage from "../assets/enter-name-bg.png";
+import bgImage from "../Assets/username-enter-bg.png";
+import inputBgImage from "../Assets/enter-name-bg.png";
 
 const UsernamePopup = ({ onSave }) => {
   const [username, setUsername] = useState("");

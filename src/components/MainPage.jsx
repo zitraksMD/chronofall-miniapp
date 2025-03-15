@@ -6,7 +6,7 @@ import BattlepassPopup from "./Battlepass";
 import UsernamePopup from "./UsernamePopup";
 import CharacterScreen from "./CharacterScreen"; 
 import styles from "./MainPage.module.scss";
-import mainBg from "/src/Assets/main-screen-bg.png";
+import mainBg from "../Assets/main-screen-bg.png";
 import { useUser } from "./Username";
 import { motion, AnimatePresence } from "framer-motion";
 import GoldDisplay from "./GoldDisplay";

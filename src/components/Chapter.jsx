@@ -8,7 +8,6 @@ import { useUser } from "./Username";
 import lootTable from "./lootTable";
 import monsterTable from "./monsterTable";
 import { useGold } from "./GoldContext";
-import coinIcon from "../Assets/coin-icon.png"; // Убедись, что путь правильный
 import GoldDisplay from "./GoldDisplay";
 
 

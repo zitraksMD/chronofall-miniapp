@@ -25,8 +25,14 @@ export const useFloorsStore = create((set, get) => ({
     { x: 900, y: 410, width: 40, height: 40, direction: -1, speed: 2, patrolLeft: 850, patrolRight: 1000 },
   ],
   floors: [
-    { x: 0, y: 550, width: 800, height: 20 },
-    { x: 850, y: 450, width: 500, height: 20 },
+    { x: 0, y: 550, width: 800, height: 10 },  // Существующая платформа
+    { x: 850, y: 450, width: 500, height: 10 }, // Существующая платформа
+  
+    // Новая платформа где-то «сверху»
+    { x: 200, y: 350, width: 300, height: 10 }, 
+    { x: 200, y: 200, width: 300, height: 10 },
+    // Новая платформа «сбоку»
+    { x: 1200, y: 500, width: 200, height: 10 },
   ],
 
   fireBullet: () => {
@@ -46,7 +52,6 @@ export const useFloorsStore = create((set, get) => ({
     });
   },
 
-  // ✅ Переименовал с "mmoveBullets" на "moveBullets"
   moveBullets: () => {
     set((state) => {
       if (!state.bullets) return { bullets: [] }; // ✅ Гарантия, что bullets — массив
@@ -79,7 +84,7 @@ export const useFloorsStore = create((set, get) => ({
 
         if (hitPlatform) return false;
 
-        if (bullet.x < 0 || bullet.x > 1300) return false;
+        if (bullet.x < 0 || bullet.x > 2000) return false;
 
         return true;
       });
@@ -105,7 +110,7 @@ export const useFloorsStore = create((set, get) => ({
 
   movePlayer: (deltaX) =>
     set((state) => {
-      const newX = Math.max(0, Math.min(1300, state.player.x + deltaX));
+      const newX = Math.max(0, Math.min(2000, state.player.x + deltaX));
       return { player: { ...state.player, x: newX, direction: deltaX > 0 ? 1 : -1 } };
     }),
 
@@ -185,4 +190,8 @@ export const useFloorsStore = create((set, get) => ({
       }
       return {};
     }),
+    cameraY: 240,
+    setCameraY: (newY) => set({ cameraY: newY }),
+    cameraX: 0,
+    setCameraX: (newX) => set({ cameraX: newX }),
 }));

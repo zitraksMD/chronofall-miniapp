@@ -2,8 +2,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 667px;
-  height: 375px;
+  width: 100vw;
+  height: 100vh;
   background: black;
   display: flex;
   align-items: center;
@@ -12,33 +12,23 @@
   flex-direction: column;
 }
 
-/* Стили для мобильных устройств (портретная ориентация) */
 @media (orientation: portrait) {
   .fullscreenContainer {
-    /* При повороте, чтобы контент заполнял экран, задаём ширину как 100vw,
-       а высоту по соотношению сторон. Поскольку при повороте ширина и высота меняются местами,
-       можно сделать так: */
-    width: 667px;
-    height: 375px;
     transform: rotate(270deg);
     transform-origin: center center;
-    /* Если нужно подвинуть, можно добавить margin или top/left */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(270deg);
+    width: 100vh;
+    height: 100vw;
   }
 }
 
-/* Стили для ПК (например, экраны шире 1024px) */
 @media (min-width: 1024px) {
   .fullscreenContainer {
-    top: 0;
-    left: 0;
-    width: 667px;
-    height: 375px;
+    width: 100vw;
+    height: 100vh;
     transform: none;
   }
 }
+
 
 .closeButton {
   position: absolute;
@@ -55,7 +45,15 @@
 
 .controls {
   position: absolute;
-  top: 20px;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.leftControls,
+.rightControls {
   display: flex;
   gap: 10px;
 }
@@ -67,14 +65,9 @@
   font-size: 24px;
   cursor: pointer;
   border-radius: 50%;
+  /* дополнительные стили, как у тебя уже есть */
   -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none;
-  outline: none;
   touch-action: manipulation;
 }
 

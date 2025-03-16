@@ -76,60 +76,64 @@ const FloorsScreen = ({ onClose }) => {
   
       {/* Кнопки управления */}
       <div className={styles.controls}>
-        <button
-          className={styles.controlButton}
-          onMouseDown={() => startMoving(-10)}
-          onMouseUp={stopMoving}
-          onMouseLeave={stopMoving}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            startMoving(-10);
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            stopMoving();
-          }}
-        >
-          ◀️
-        </button>
-        <button
-          className={styles.controlButton}
-          onMouseDown={() => jump()}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            jump();
-          }}
-        >
-          🆙
-        </button>
-        <button
-  className={styles.controlButton}
-  onMouseDown={() => store.fireBullet()}
-  onTouchStart={(e) => {
-    e.preventDefault();
-    store.fireBullet();
-  }}
->
-  🎯
-</button>
+  <div className={styles.leftControls}>
+    <button
+      className={styles.controlButton}
+      onMouseDown={() => startMoving(-10)}
+      onMouseUp={stopMoving}
+      onMouseLeave={stopMoving}
+      onTouchStart={(e) => {
+        e.preventDefault();
+        startMoving(-10);
+      }}
+      onTouchEnd={(e) => {
+        e.preventDefault();
+        stopMoving();
+      }}
+    >
+      ◀️
+    </button>
+    <button
+      className={styles.controlButton}
+      onMouseDown={() => startMoving(10)}
+      onMouseUp={stopMoving}
+      onMouseLeave={stopMoving}
+      onTouchStart={(e) => {
+        e.preventDefault();
+        startMoving(10);
+      }}
+      onTouchEnd={(e) => {
+        e.preventDefault();
+        stopMoving();
+      }}
+    >
+      ▶️
+    </button>
+  </div>
+  <div className={styles.rightControls}>
+    <button
+      className={styles.controlButton}
+      onMouseDown={() => jump()}
+      onTouchStart={(e) => {
+        e.preventDefault();
+        jump();
+      }}
+    >
+      🆙
+    </button>
+    <button
+      className={styles.controlButton}
+      onMouseDown={() => store.fireBullet()}
+      onTouchStart={(e) => {
+        e.preventDefault();
+        store.fireBullet();
+      }}
+    >
+      🎯
+    </button>
+  </div>
+</div>
 
-        <button
-          className={styles.controlButton}
-          onMouseDown={() => startMoving(10)}
-          onMouseUp={stopMoving}
-          onMouseLeave={stopMoving}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            startMoving(10);
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            stopMoving();
-          }}
-        >
-          ▶️
-        </button>
-      </div>
     </div>,
     document.body
   );

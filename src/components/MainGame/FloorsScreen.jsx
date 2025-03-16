@@ -103,6 +103,17 @@ const FloorsScreen = ({ onClose }) => {
           🆙
         </button>
         <button
+  className={styles.controlButton}
+  onMouseDown={() => store.fireBullet()}
+  onTouchStart={(e) => {
+    e.preventDefault();
+    store.fireBullet();
+  }}
+>
+  🎯
+</button>
+
+        <button
           className={styles.controlButton}
           onMouseDown={() => startMoving(10)}
           onMouseUp={stopMoving}

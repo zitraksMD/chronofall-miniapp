@@ -3,11 +3,12 @@ import { useFloorsStore } from "@/StoreMain/floorsStore";
 import playerImageSrc from "@/Assets/archer-icon.png";
 import ladderImageSrc from "@/Assets/ladder-icon.png";
 import doorImageSrc from "@/Assets/door-icon.png";
+import monsterImageSrc from "@/Assets/monster-icon.png";
 import styles from "./FloorsCanvas.module.scss";
 
-// Размер виртуального уровня:
-const VIRTUAL_WIDTH = 667;
-const VIRTUAL_HEIGHT = 375;
+// Размер виртуального уровня (чтобы вместить платформы)
+const VIRTUAL_WIDTH = 1300;
+const VIRTUAL_HEIGHT = 600;
 
 const FloorsCanvas = () => {
   const canvasRef = useRef(null);
@@ -16,18 +17,36 @@ const FloorsCanvas = () => {
   const playerImageRef = useRef(new Image());
   const ladderImageRef = useRef(new Image());
   const doorImageRef = useRef(new Image());
+  const monsterImageRef = useRef(new Image());
 
+  // Загружаем изображения
   useEffect(() => {
     playerImageRef.current.src = playerImageSrc;
     ladderImageRef.current.src = ladderImageSrc;
     doorImageRef.current.src = doorImageSrc;
+    
+    monsterImageRef.current.onload = () => {
+      console.log("✅ Monster image loaded successfully!");
+    };
+    monsterImageRef.current.onerror = () => {
+      console.error("❌ Monster image failed to load!");
+    };
+    monsterImageRef.current.src = monsterImageSrc;
   }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    if (!canvas) return;
 
-    // Функция установки размеров canvas равными размерам окна
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const store = useFloorsStore.getState();
+    if (!store || typeof store.applyGravity !== "function") {
+      console.error("❌ useFloorsStore не загружен или applyGravity не доступен!");
+      return;
+    }
+
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -36,43 +55,49 @@ const FloorsCanvas = () => {
     window.addEventListener("resize", resizeCanvas);
 
     const renderScene = () => {
-      // Обновляем физику
-      useFloorsStore.getState().applyGravity();
-
-      // Получаем актуальное состояние
       const state = useFloorsStore.getState();
-      if (!state || !state.player) {
+      if (!state || !state.player || !state.monsters || !state.bullets) {
         animationFrameRef.current = requestAnimationFrame(renderScene);
         return;
       }
-      const { player, floors, ladders, exitDoor } = state;
-
-      // Очищаем canvas
+    
+      state.applyGravity();
+      state.moveMonsters();
+    
+      // ✅ Проверяем, существует ли moveBullets() перед вызовом
+      if (typeof state.moveBullets === "function") {
+        state.moveBullets();
+      } else {
+        console.error("❌ moveBullets() не найден в store");
+      }
+    
+      const {
+        player = {},
+        floors = [],
+        ladders = [],
+        exitDoor = {},
+        monsters = [],
+        bullets = []
+      } = state;
+      
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Вычисляем коэффициент масштабирования:
       const scaleX = canvas.width / VIRTUAL_WIDTH;
       const scaleY = canvas.height / VIRTUAL_HEIGHT;
-      // Используем минимальный, чтобы сохранить пропорции
       const scale = Math.min(scaleX, scaleY);
 
-      // Центрируем сцену:
       const offsetX = (canvas.width - VIRTUAL_WIDTH * scale) / 2;
       const offsetY = (canvas.height - VIRTUAL_HEIGHT * scale) / 2;
 
       ctx.save();
-      // Смещаем контекст, чтобы отцентрировать
       ctx.translate(offsetX, offsetY);
-      // Применяем масштабирование
       ctx.scale(scale, scale);
 
-      // Отрисовка платформ
-      ctx.fillStyle = "brown";
       floors.forEach((floor) => {
+        ctx.fillStyle = "brown";
         ctx.fillRect(floor.x, floor.y, floor.width, floor.height);
       });
 
-      // Отрисовка лестниц
       ladders.forEach((ladder) => {
         ctx.drawImage(
           ladderImageRef.current,
@@ -83,7 +108,6 @@ const FloorsCanvas = () => {
         );
       });
 
-      // Отрисовка двери выхода
       ctx.drawImage(
         doorImageRef.current,
         exitDoor.x,
@@ -92,14 +116,33 @@ const FloorsCanvas = () => {
         exitDoor.height
       );
 
-      // Отрисовка игрока
+      monsters.forEach((monster) => {
+        ctx.drawImage(
+          monsterImageRef.current,
+          monster.x,
+          monster.y,
+          monster.width,
+          monster.height
+        );
+      });
+
       ctx.drawImage(
         playerImageRef.current,
-        player.x - 20,
-        player.y - 40,
+        player.x,
+        player.y,
         40,
         40
       );
+
+      // ✅ Проверка перед отрисовкой пуль
+      if (!bullets || !Array.isArray(bullets)) {
+        console.error("❌ Ошибка: bullets не массив или не определен!");
+      } else {
+        bullets.forEach((bullet) => {
+          ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+        });
+      }
+      
 
       ctx.restore();
 

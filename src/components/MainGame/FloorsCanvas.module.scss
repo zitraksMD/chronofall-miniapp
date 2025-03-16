@@ -1,21 +1,22 @@
 .canvasWrapper {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 150px; /* убираем любые отступы */
-    padding: 0;
-  }
-  
-  .canvas {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;    /* или cover, если хочешь растянуть, обрезая */
-    image-rendering: pixelated;
-    /* aspect-ratio: 667 / 375; // можешь оставить, если нужно жёстко держать пропорции */
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.canvas {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
   
   @media (max-width: 500px) {
     .canvas {

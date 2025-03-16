@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import MainPage from "./components/Mainpage";
+import MainPage from "./components/MainPage";
 import { UserProvider } from "./components/Username";
+import { GoldProvider } from "./components/GoldContext"; // ✅ Должен быть импорт
 
 function App() {
   return (
     <UserProvider>
-      <MainPage />
+      <GoldProvider> {/* ✅ GoldProvider должен оборачивать все компоненты */}
+        <MainPage />
+      </GoldProvider>
     </UserProvider>
   );
 }

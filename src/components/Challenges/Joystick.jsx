@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGameStore } from "../Store/gameStore"; 
+import { useGameStore } from "../../StoreChallenge/gameStore"; 
 import styles from "./Joystick.module.scss";
 
 const Joystick = () => {

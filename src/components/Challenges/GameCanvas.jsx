@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
-import { useGameStore } from "../Store/gameStore"; 
-import { useBulletsStore } from "../Store/bulletsStore";
-import { useEnemiesStore } from "../Store/enemiesStore";
-import arrowImageSrc from "../Assets/arrow-icon.png";
-import playerImageSrc from "../Assets/archer-icon.png";
-import enemyImageSrc from "../Assets/enemy-icon.png";
+import { useGameStore } from "../../StoreChallenge/gameStore"; 
+import { useBulletsStore } from "../../StoreChallenge/bulletsStore";
+import { useEnemiesStore } from "../../StoreChallenge/enemiesStore";
+import arrowImageSrc from "../../Assets/arrow-icon.png";
+import playerImageSrc from "../../Assets/archer-icon.png";
+import enemyImageSrc from "../../Assets/enemy-icon.png";
 
 console.log("✅ GameCanvas загружен, создаём canvas!");
 

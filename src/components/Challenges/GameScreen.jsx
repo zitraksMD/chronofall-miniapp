@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion"; // ✅ Добавляем анимацию
 import GameCanvas from "./GameCanvas";
 import Joystick from "./Joystick";
-import { useEnemiesStore } from "../Store/enemiesStore";
+import { useEnemiesStore } from "../../StoreChallenge/enemiesStore";
 import styles from "./GameScreen.module.scss";
-import backgroundImage from "../Assets/challenge-background.png";
+import backgroundImage from "../../Assets/challenge-background.png";
 
 const GameScreen = ({ onClose }) => {
   const [wave, setWave] = useState(1);
